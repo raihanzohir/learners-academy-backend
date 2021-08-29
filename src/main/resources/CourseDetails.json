@@ -1,0 +1,48 @@
+[
+    {
+        "classId": 1,
+        "className": "One",
+        "subject": [
+            {
+                "subjectId": 1,
+                "subjectName": "English"
+            }
+        ],
+        "student": [
+            {
+                "studentId": 1,
+                "studentName": "Md. Zohir Raihan"
+            }
+        ],
+        "teacher": [
+            {
+                "teacherId": 1,
+                "teacherName": "Mosharrof Hossain",
+                "subject": []
+            }
+        ]
+    },
+    {
+        "classId": 2,
+        "className": "Two",
+        "subject": [
+            {
+                "subjectId": 2,
+                "subjectName": "Math"
+            }
+        ],
+        "student": [
+            {
+                "studentId": 2,
+                "studentName": "Md. Shahiduzzaman"
+            }
+        ],
+        "teacher": [
+            {
+                "teacherId": 2,
+                "teacherName": "Samsuddin Mohalot",
+                "subject": []
+            }
+        ]
+    }
+]

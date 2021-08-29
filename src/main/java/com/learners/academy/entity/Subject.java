@@ -5,12 +5,18 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 
 @Entity
 public class Subject {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="subject_seq")
+	@SequenceGenerator(
+	    name="subject_seq",
+	    sequenceName="subject_sequence",
+	    allocationSize=1
+	)
 	@Column(name = "subjectId", updatable = false, nullable = true)
 	private Long subjectId;
 	@Column(nullable = true)

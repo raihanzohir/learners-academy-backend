@@ -14,12 +14,18 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 
 @Entity
 public class Classes {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="classes_seq")
+	@SequenceGenerator(
+	    name="classes_seq",
+	    sequenceName="classes_sequence",
+	    allocationSize=1
+	)
 	@Column(name = "classId" , updatable = false, nullable = true)
 	private Long classId;
 	@Column(nullable = true)

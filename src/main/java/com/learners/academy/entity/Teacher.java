@@ -12,13 +12,19 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.JoinColumn;
 
 @Entity
 public class Teacher {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="teacher_seq")
+	@SequenceGenerator(
+	    name="teacher_seq",
+	    sequenceName="teacher_sequence",
+	    allocationSize=1
+	)
 	@Column(name = "teacherId", updatable = false, nullable = true)
 	private Long teacherId;
 	@Column(nullable = true)
