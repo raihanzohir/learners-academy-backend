@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Student Management System</title>
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+
+<link rel="stylesheet"	href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet"	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>		
+<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>		
+<script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap4.min.js"></script>		
+<script type="text/javascript">
+	$('document').ready(function(){
+		$('.table #deleteBtn').on('click', function(event) {
+			event.preventDefault();
+			//var href = $(this).attr('href');
+			//$('#deleteModal #delRef').attr('href', href);
+			$('#deleteModal').modal();
+		});
+	});	
+</script>
+</head>
+<body>
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+  <!-- Brand -->
+  <a class="navbar-brand" th:href="@{/students}">Student Management System</a>
+
+  <!-- Toggler/collapsibe Button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Navbar links -->
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+<!--       <li class="nav-item"> -->
+<!--         <a class="nav-link" th:href="@{/students}">Student Management</a> -->
+<!--       </li> -->
+<!--       <li class="nav-item"> -->
+<!--         <a class="nav-link" th:href="@{/students}">Teacher Management</a> -->
+<!--       </li> -->
+    </ul>
+  </div>
+</nav>
+
+	<div class="container">
+		<div class="row">
+			<h1> List of Students </h1>
+		</div>
+		
+		<div class="row">
+			<div class="col-lg-3">
+				<a th:href="@{/students/new}" class="btn btn-primary mb-3"> Add Student</a>
+			</div>
+		</div>
+		<table class="table table-striped table-bordered">
+			<thead class="table-dark">
+				<tr>
+					<th style="text-align: center;"> # </th>
+					<th style="text-align: center;"> First Name</th>
+					<th style="text-align: center;"> Last Name</th>
+					<th style="text-align: center;"> Email </th>
+					<th style="text-align: center;"> Actions </th>
+				</tr>
+			</thead>
+			
+			<tbody>
+				<tr th:each="student, studentStat : ${students}">
+					<td style="text-align: center;" th:text = "${studentStat.count}"></td>
+					<td th:text="${student.firstName}"></td>
+					<td th:text="${student.lastName}"></td>
+					<td th:text="${student.email}"></td>
+					<td style="text-align: center;">
+						<a th:href="@{/students/edit/{id}(id=${student.id})}" class="btn btn-sm btn-primary" title="Edit">
+						<span><i class="fas fa-edit"></i></span></a>
+						
+<!-- 						<a th:href = "@{/students/{id}(id=${student.id})}" -->
+<!-- 						 class = "btn btn-sm btn-danger">Delete</a> -->
+						 
+<!-- 						<a th:href="@{/students/{id}(id=${student.id})}" -->
+<!-- 						  class="btn btn-danger btn-sm py-1" -->
+<!-- 						  th:data-confirm-delete="|Are you sure you want to delete this employee ${student.firstName} ${student.lastName}?|" -->
+<!-- 						  onclick="if (!confirm(this.getAttribute('data-confirm-delete'))) return false">Delete</a> -->
+						
+						<a href="#" class="btn btn-danger btn-sm" id="deleteBtn" title="Delete">
+							<span><i class="fas fa-trash"></i></span>
+						</a>
+						
+						<div class="modal" tabindex="-1" role="dialog" id="deleteModal">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5>Confirm Delete</h5>
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+											<span area-hidden="true">&times;</span>
+										</button>
+									</div>
+									<div class="modal-body">
+										<p>Are you sure you want to delete this student <span th:text="|${student.firstName} ${student.lastName}|"></span> ?</p>
+									</div>
+									<div class="modal-footer">
+										<a th:href="@{/students/{id}(id=${student.id})}" id="delRef" type="button" class="btn btn-danger">Yes, Delete</a>
+										<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						  												 
+					</td>
+				</tr>
+			</tbody>		
+		</table>
+		
+	</div>
+	
+	
+	
+</body>
+</html>
